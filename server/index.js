@@ -18,8 +18,11 @@ mongoose
 
 const app = express();
 
-//router middleware
+//middlewares
+
 app.use(morgan("dev"));
+app.use(express.json());
+//router middleware
 
 app.use("/api", authRoutes);
 const port = process.env.PORT || 9000;

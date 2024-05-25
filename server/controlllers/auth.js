@@ -1,5 +1,3 @@
-export const users = async (req, res) => {
-  res.json({
-    data: "Christy Thomas says hi from controller",
-  });
+export const register = async (req, res) => {
+  console.log(req.body);
 };
