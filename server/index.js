@@ -2,6 +2,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import morgan from "morgan";
 import authRoutes from "./routes/auth.js";
 dotenv.config();
 // Database connection
@@ -18,6 +19,7 @@ mongoose
 const app = express();
 
 //router middleware
+app.use(morgan("dev"));
 
 app.use("/api", authRoutes);
 const port = process.env.PORT || 9000;
