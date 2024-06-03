@@ -4,8 +4,7 @@ import Jumbotron from "../components/cards/Jumbotron";
 const Home = () => {
   return (
     <div>
-      <Jumbotron />
-      Home
+      <Jumbotron title="Hello World" subTitle="Welcome to React E-Commerce" />
     </div>
   );
 };
