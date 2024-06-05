@@ -2,10 +2,9 @@ import React, { useState } from "react";
 
 import Jumbotron from "../components/cards/Jumbotron";
 import axios from "axios";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
-  console.log(process.env.REACT_APP_API);
   //state
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,18 +13,28 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API}/register`, {
-        name,
-        email,
-        password,
-      });
-      console.log(res);
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API}/register`,
+        {
+          name,
+          email,
+          password,
+        }
+      );
+      console.log(data);
+      if (data?.error) {
+        toast.error(data.error);
+      } else {
+        toast.success("Registration successfull");
+      }
     } catch (e) {
       console.log(e);
+      toast.error("Registraion failed try again");
     }
   };
   return (
     <div>
+      <Toaster />
       <Jumbotron title="Register" />
       <div className="container-fluid mt-5">
         <div className="row">
