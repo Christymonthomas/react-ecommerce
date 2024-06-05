@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 
 import Jumbotron from "../components/cards/Jumbotron";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Register = () => {
+  console.log(process.env.REACT_APP_API);
   //state
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      console.log(name, password, email);
+      const res = await axios.post(`${process.env.REACT_APP_API}/register`, {
+        name,
+        email,
+        password,
+      });
+      console.log(res);
     } catch (e) {
       console.log(e);
     }
@@ -49,7 +58,6 @@ const Register = () => {
                 Submit
               </button>
             </form>
-            <pre>{JSON.stringify(name, null, 4)}</pre>
           </div>
         </div>
       </div>
