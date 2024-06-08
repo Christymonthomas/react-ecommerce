@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import Jumbotron from "../components/cards/Jumbotron";
+import Jumbotron from "../../components/cards/Jumbotron";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const Register = () => {
   //state
@@ -34,7 +34,6 @@ const Register = () => {
   };
   return (
     <div>
-      <Toaster />
       <Jumbotron title="Register" />
       <div className="container-fluid mt-5">
         <div className="row">
