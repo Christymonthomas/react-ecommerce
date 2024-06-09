@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useAuth } from "../../context/auth";
 
 import Jumbotron from "../../components/cards/Jumbotron";
 import axios from "axios";
@@ -9,6 +10,7 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [auth, setAuth] = useAuth();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,6 +23,8 @@ const Login = () => {
       if (data?.error) {
         toast.error(data.error);
       } else {
+        localStorage.setItem("auth", JSON.stringify(data));
+        setAuth({ ...auth, token: data.token, user: data.user });
         toast.success("Login successfull");
       }
     } catch (e) {

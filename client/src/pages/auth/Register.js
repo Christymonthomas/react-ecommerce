@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useAuth } from "../../context/auth";
 
 import Jumbotron from "../../components/cards/Jumbotron";
 import axios from "axios";
@@ -9,6 +10,7 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [auth, setAuth] = useAuth();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,6 +27,8 @@ const Register = () => {
       if (data?.error) {
         toast.error(data.error);
       } else {
+        localStorage.setItem("auth", JSON.stringify(data));
+        setAuth({ ...auth, token: data.token, user: data.user });
         toast.success("Registration successfull");
       }
     } catch (e) {
